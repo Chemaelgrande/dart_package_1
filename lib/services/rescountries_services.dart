@@ -8,13 +8,10 @@ class ResCountriesServicesV3 {
     var url = Uri.parse("https://restcountries.com/v3/all");
 
     http.get(url).then((response) {
-      print(url);
-      print(response.body);
-
+      // DECODIFICAR EL BODY
       final List<dynamic> bodyDecoded = jsonDecode(response.body);
 
-      print(bodyDecoded);
-
+      //ITERABLE DE PAISES
       final paises = bodyDecoded.map((element) {
         try {
           return CountryV3.fromJson(element);
@@ -23,8 +20,7 @@ class ResCountriesServicesV3 {
         }
       });
 
-      print(paises.first.name!.common);
-
+      //LISTA DE PAISES
       final List<CountryV3> listPaises = paises.toList();
       for (var i = 0; i < listPaises.length; i++) {
         if (listPaises[i].name != null) {
